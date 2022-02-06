@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace SemihCelek.Merge
+namespace SemihCelek.Merge.SingleSlice
 {
     public class SliceAnimationController
     {
@@ -25,6 +24,12 @@ namespace SemihCelek.Merge
         public void MoveToCircle()
         {
             _sliceAnimator.SetBool(MoveToCircleAnimationHash, true);
+        }
+
+        public void MergeLeft()
+        {
+            // _sliceAnimator.SetTrigger();
+            Debug.Log("Merge Anim");
         }
     }
 }

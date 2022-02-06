@@ -1,13 +1,11 @@
-using System;
+using SemihCelek.Merge.PlayerInput;
 using UnityEngine;
 
-namespace SemihCelek.Merge
+namespace SemihCelek.Merge.SingleSlice
 {
     public class Slice : MonoBehaviour
     {
         public int Score { get; set; }
-        
-        public delegate void SliceActions();
 
         public SliceAnimationController SliceAnimationController;
         

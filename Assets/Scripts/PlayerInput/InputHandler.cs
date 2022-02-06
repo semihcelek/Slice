@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SemihCelek.Merge
+namespace SemihCelek.Merge.PlayerInput
 {
     public class InputHandler : MonoBehaviour
     {

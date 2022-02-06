@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace SemihCelek.Merge
+namespace SemihCelek.Merge.SliceContainer
 {
     public class SliceContainer : MonoBehaviour
     {
@@ -23,12 +20,16 @@ namespace SemihCelek.Merge
         public void ChangeSliceContainerState(ISliceContainerState state)
         {
             _sliceContainerState = state;
-            Debug.Log(state.GetType());
         }
 
         public ISliceContainerState GetCurrentContainerState()
         {
             return _sliceContainerState;
+        }
+
+        public void MergeLeft(SliceContainer nextContainer)
+        {
+            _sliceContainerState.MergeLeft(nextContainer);
         }
     }
 }
