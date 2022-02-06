@@ -6,8 +6,6 @@ namespace SemihCelek.Merge
     {
         private SliceContainer _sliceContainer;
 
-        public event Slice.SliceActions MoveToContainer;
-
         public EmptySliceContainerState(SliceContainer sliceContainer)
         {
             _sliceContainer = sliceContainer;
@@ -16,15 +14,13 @@ namespace SemihCelek.Merge
         public void HandleSliceTrigger(Collider other)
         {
             var hasSlice = other.TryGetComponent(out Slice slice);
-            if (hasSlice)
-            {
-                slice.SliceAnimationController.OnMoveContainer();
-                slice.transform.SetParent(_sliceContainer.transform);
-                MoveToContainer?.Invoke();
+            if (!hasSlice) return;
+            
+            slice.SliceAnimationController.OnMoveContainer();
+            slice.transform.SetParent(_sliceContainer.transform, false);
+            slice.transform.localScale = new Vector3(1.6f,0.5f,7.75f);
                 
-                Debug.Log("A Slice is collided, empty state");
-                _sliceContainer.ChangeSliceContainerState(new FullSliceContainerState(_sliceContainer));
-            }
+            _sliceContainer.ChangeSliceContainerState(new FullSliceContainerState(_sliceContainer));
         }
     }
 }

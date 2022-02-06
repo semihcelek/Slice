@@ -17,7 +17,6 @@ namespace SemihCelek.Merge
             if (hasSlice)
             {
                 // in here check the score on the slice component, if its same on current slice merge them.
-                Debug.Log("A Slice is collided, full state");
                 // _sliceContainer.ChangeSliceContainerState(new FullSliceContainerState(_sliceContainer));
             }
         }

@@ -9,7 +9,7 @@ namespace SemihCelek.Merge
     {
         private ISliceContainerState _sliceContainerState;
 
-        private void Start()
+        private void Awake()
         {
             _sliceContainerState = new EmptySliceContainerState(this);
             
@@ -24,6 +24,11 @@ namespace SemihCelek.Merge
         {
             _sliceContainerState = state;
             Debug.Log(state.GetType());
+        }
+
+        public ISliceContainerState GetCurrentContainerState()
+        {
+            return _sliceContainerState;
         }
     }
 }
