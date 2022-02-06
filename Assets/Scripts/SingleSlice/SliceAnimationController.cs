@@ -8,12 +8,14 @@ namespace SemihCelek.Merge.SingleSlice
 
         private int MoveToContainerAnimationHash;
         private int MoveToCircleAnimationHash;
+        private int MergeLeftAnimationHash;
 
         public SliceAnimationController(Animator sliceAnimator)
         {
             _sliceAnimator = sliceAnimator;
             MoveToContainerAnimationHash = Animator.StringToHash("MoveToContainer");
             MoveToCircleAnimationHash = Animator.StringToHash("MoveToCircle");
+            MergeLeftAnimationHash = Animator.StringToHash("MergeLeft");
         }
         
         public void OnMoveContainer()
@@ -28,7 +30,7 @@ namespace SemihCelek.Merge.SingleSlice
 
         public void MergeLeft()
         {
-            // _sliceAnimator.SetTrigger();
+            _sliceAnimator.SetTrigger(MergeLeftAnimationHash);
             Debug.Log("Merge Anim");
         }
     }

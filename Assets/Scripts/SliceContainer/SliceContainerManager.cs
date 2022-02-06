@@ -48,15 +48,15 @@ namespace SemihCelek.Merge.SliceContainer
                 currentContainer.MergeLeft(nextContainer);
 
 
-                var previousContainer = _sliceContainers[(i - 1) % _sliceContainers.GetUpperBound(0)];
-                Debug.Log(previousContainer.GetCurrentContainerState().GetType());
-
-                if (previousContainer.GetCurrentContainerState().GetType() == typeof(EmptySliceContainerState))
-                {
-                    continue;
-                }
-
-                Debug.Log("Merge right");
+                // var previousContainer = _sliceContainers[(i - 1) % _sliceContainers.GetUpperBound(0)];
+                // Debug.Log(previousContainer.GetCurrentContainerState().GetType());
+                //
+                // if (previousContainer.GetCurrentContainerState().GetType() == typeof(EmptySliceContainerState))
+                // {
+                //     continue;
+                // }
+                //
+                // Debug.Log("Merge right");
             }
         }
     }
