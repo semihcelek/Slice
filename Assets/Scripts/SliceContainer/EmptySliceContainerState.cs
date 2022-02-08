@@ -7,8 +7,7 @@ namespace SemihCelek.Merge.SliceContainer
     public class EmptySliceContainerState : ISliceContainerState
     {
         private SliceContainer _sliceContainer;
-        
-        
+
         public EmptySliceContainerState(SliceContainer sliceContainer)
         {
             _sliceContainer = sliceContainer;
@@ -20,21 +19,16 @@ namespace SemihCelek.Merge.SliceContainer
             if (!hasSlice) return;
 
             slice.transform.SetParent(_sliceContainer.transform);
-            // _sliceContainer._BoxCollider.enabled = false;
 
             _sliceContainer.ChangeSliceContainerState(new FullSliceContainerState(_sliceContainer, slice));
-
-
         }
 
         public void MergeLeft(SliceContainer nextContainer)
         {
-            
         }
 
         public void HandleUpdate()
         {
-            
         }
     }
 }

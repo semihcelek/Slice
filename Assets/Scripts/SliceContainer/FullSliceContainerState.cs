@@ -18,28 +18,18 @@ namespace SemihCelek.Merge.SliceContainer
         public static event SliceGenerationAction OnGenerateSlice;
         public static event SliceContainerActions OnCheckMerge;
 
-        
+
         public FullSliceContainerState(SliceContainer sliceContainer, Slice slice)
         {
             _sliceContainer = sliceContainer;
             _slice = slice;
             _rotationInContainer = new Vector3(90, -90, -90);
             _rotationInNextContainer = new Vector3(45, -90, -90);
-            
-            // _sliceContainer.transform.SetParent(_slice.transform);
-            
-
             slice.StartCoroutine(MoveToSliceContainerCoroutine());
         }
 
         public void HandleSliceTrigger(Collider other)
         {
-            var hasSlice = other.TryGetComponent(out Slice slice);
-            if (hasSlice)
-            {
-                // in here check the score on the slice component, if its same on current slice merge them.
-                // _sliceContainer.ChangeSliceContainerState(new FullSliceContainerState(_sliceContainer));
-            }
         }
 
         public void MergeLeft(SliceContainer nextContainer)
@@ -49,13 +39,12 @@ namespace SemihCelek.Merge.SliceContainer
 
         public void HandleUpdate()
         {
-            
         }
 
         private IEnumerator MergeWithNextContainerCoroutine(SliceContainer nextContainer)
         {
             var time = 1f;
-            
+
             var elapsedTime = 0f;
 
             while (elapsedTime < time)
@@ -64,21 +53,20 @@ namespace SemihCelek.Merge.SliceContainer
                 var nextSliceTransform = nextContainer.transform;
 
                 sliceTransform.position =
-                    Vector3.Lerp(sliceTransform.position, nextSliceTransform.GetChild(0).position, elapsedTime/time);
+                    Vector3.Lerp(sliceTransform.position, nextSliceTransform.GetChild(0).position, elapsedTime / time);
 
-                sliceTransform.localRotation = Quaternion.Lerp(sliceTransform.localRotation,Quaternion.Euler(_rotationInNextContainer), elapsedTime/time );
-                
+                sliceTransform.localRotation = Quaternion.Lerp(sliceTransform.localRotation,
+                    Quaternion.Euler(_rotationInNextContainer), elapsedTime / time);
+
                 elapsedTime += Time.deltaTime;
 
                 yield return null;
             }
-            
+
             _sliceContainer.ChangeSliceContainerState(new EmptySliceContainerState(_sliceContainer));
-    
+
             _sliceContainer.DestroySlice(nextContainer.transform.GetChild(0).gameObject);
-
         }
-
 
         private IEnumerator MoveToSliceContainerCoroutine()
         {
@@ -100,10 +88,9 @@ namespace SemihCelek.Merge.SliceContainer
 
                 yield return null;
             }
-            
+
             OnCheckMerge?.Invoke();
             OnGenerateSlice?.Invoke();
-
         }
     }
 }

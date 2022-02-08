@@ -6,7 +6,6 @@ namespace SemihCelek.Merge.SliceContainer
     {
         void HandleSliceTrigger(Collider other);
 
-
         void MergeLeft(SliceContainer nextContainer);
         void HandleUpdate();
     }

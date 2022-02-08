@@ -31,7 +31,6 @@ namespace SemihCelek.Merge.SingleSlice
         public void MergeLeft()
         {
             _sliceAnimator.SetTrigger(MergeLeftAnimationHash);
-            Debug.Log("Merge Anim");
         }
     }
 }

@@ -10,13 +10,9 @@ namespace SemihCelek.Merge.SliceContainer
         [SerializeField]
         public Transform _sliceMoveTarget;
 
-        [SerializeField]
-        public BoxCollider _BoxCollider;
-
         private void Awake()
         {
             _sliceContainerState = new EmptySliceContainerState(this);
-            
         }
 
         private void Update()

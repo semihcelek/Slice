@@ -8,8 +8,6 @@ namespace SemihCelek.Merge.SingleSlice
 {
     public class Slice : MonoBehaviour
     {
-        public int Score { get; set; }
-
         public SliceAnimationController SliceAnimationController;
 
         private Transform _cachedTransform;
@@ -37,20 +35,11 @@ namespace SemihCelek.Merge.SingleSlice
             InputHandler.OnClickFireButton -= StartGoForwardCoroutine;
         }
 
-        // private void Update()
-        // {
-        //     if (!_inputHandler.Fire) return;
-        //
-        //     StartCoroutine(SmoothlyGoForwardCoroutine());
-        // }
-
         private void StartGoForwardCoroutine()
         {
             StartCoroutine(SmoothlyGoForwardCoroutine());
             InputHandler.OnClickFireButton -= StartGoForwardCoroutine;
         }
-    
-        
 
         private IEnumerator SmoothlyGoForwardCoroutine()
         {
@@ -68,7 +57,6 @@ namespace SemihCelek.Merge.SingleSlice
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-            
         }
 
         private void OnTriggerEnter(Collider other)
@@ -76,11 +64,6 @@ namespace SemihCelek.Merge.SingleSlice
             var isSliceContainer = other.TryGetComponent(out SliceContainer.SliceContainer sliceContainer);
 
             if (!isSliceContainer) return;
-
-            // if (sliceContainer.GetCurrentContainerState().GetType() == typeof(FullSliceContainerState)) return;
-            //
-            // _boxCollider.enabled = false;
-            // Debug.Log("boxcollider false");
         }
     }
 }

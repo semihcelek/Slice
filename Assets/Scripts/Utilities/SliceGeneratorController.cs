@@ -9,8 +9,6 @@ namespace SemihCelek.Merge.Utilities
         [SerializeField]
         private GameObject _slicePrefab;
         
-
-
         private void GenerateRandomSlice()
         {
             var slice = Instantiate(_slicePrefab);
