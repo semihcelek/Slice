@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SemihCelek.Merge.SliceContainer
@@ -6,10 +7,21 @@ namespace SemihCelek.Merge.SliceContainer
     {
         private ISliceContainerState _sliceContainerState;
 
+        [SerializeField]
+        public Transform _sliceMoveTarget;
+
+        [SerializeField]
+        public BoxCollider _BoxCollider;
+
         private void Awake()
         {
             _sliceContainerState = new EmptySliceContainerState(this);
             
+        }
+
+        private void Update()
+        {
+            _sliceContainerState.HandleUpdate();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -30,6 +42,11 @@ namespace SemihCelek.Merge.SliceContainer
         public void MergeLeft(SliceContainer nextContainer)
         {
             _sliceContainerState.MergeLeft(nextContainer);
+        }
+
+        public void DestroySlice(GameObject slice)
+        {
+            Destroy(slice);
         }
     }
 }

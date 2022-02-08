@@ -4,13 +4,27 @@ using UnityEngine;
 
 namespace SemihCelek.Merge.PlayerInput
 {
+    public delegate void PlayerInputAction();
+    
+    
     public class InputHandler : MonoBehaviour
     {
+        public static event PlayerInputAction OnClickFireButton;
+        
         public bool Fire { get; set; }
 
         private void Update()
         {
-            Fire = Input.GetKey(KeyCode.Mouse0);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                OnClickFireButton?.Invoke();
+            }
+            
+            
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                OnClickFireButton?.Invoke();
+            }
         }
     }
 }

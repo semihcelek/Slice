@@ -7,9 +7,8 @@ namespace SemihCelek.Merge.SliceContainer
     public class EmptySliceContainerState : ISliceContainerState
     {
         private SliceContainer _sliceContainer;
-
-        public static event SliceGenerationAction OnGenerateSlice;
-
+        
+        
         public EmptySliceContainerState(SliceContainer sliceContainer)
         {
             _sliceContainer = sliceContainer;
@@ -19,20 +18,23 @@ namespace SemihCelek.Merge.SliceContainer
         {
             var hasSlice = other.TryGetComponent(out Slice slice);
             if (!hasSlice) return;
-            
-            slice.SliceAnimationController.OnMoveContainer();
-            // slice.transform.SetParent(_sliceContainer.transform, false);
-            slice.transform.parent.SetParent(_sliceContainer.transform, false);
-            slice.transform.localScale = new Vector3(1.6f,0.5f,7.75f);
-                
+
+            slice.transform.SetParent(_sliceContainer.transform);
+            // _sliceContainer._BoxCollider.enabled = false;
+
             _sliceContainer.ChangeSliceContainerState(new FullSliceContainerState(_sliceContainer, slice));
-            
-            OnGenerateSlice?.Invoke();
+
+
         }
 
         public void MergeLeft(SliceContainer nextContainer)
         {
-            throw new System.NotImplementedException();
+            
+        }
+
+        public void HandleUpdate()
+        {
+            
         }
     }
 }

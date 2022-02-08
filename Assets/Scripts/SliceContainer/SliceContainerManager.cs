@@ -11,12 +11,12 @@ namespace SemihCelek.Merge.SliceContainer
 
         private void Start()
         {
-            SliceGeneratorController.OnCheckMerge += CheckEachContainerState;
+            FullSliceContainerState.OnCheckMerge += CheckEachContainerState;
         }
 
         private void OnDisable()
         {
-            SliceGeneratorController.OnCheckMerge -= CheckEachContainerState;
+            FullSliceContainerState.OnCheckMerge -= CheckEachContainerState;
         }
 
         // In here, create a event function which loops through every slice container, and merge accordingly
@@ -27,16 +27,20 @@ namespace SemihCelek.Merge.SliceContainer
             {
                 var currentContainer = _sliceContainers[i];
 
-                // Debug.Log(currentContainer.GetCurrentContainerState().GetType());
+                Debug.Log(_sliceContainers.GetLowerBound(0));
+                Debug.Log(_sliceContainers.GetUpperBound(0));
 
                 if (currentContainer.GetCurrentContainerState().GetType() == typeof(EmptySliceContainerState))
                 {
                     continue;
                 }
 
-                var nextContainer = _sliceContainers[(i + 1) % _sliceContainers.GetUpperBound(0)];
-
-                // Debug.Log(nextContainer.GetCurrentContainerState().GetType());
+                var nextContainer = i switch
+                {
+                    6 => _sliceContainers[7],
+                    7 => _sliceContainers[0],
+                    _ => _sliceContainers[(i + 1) % _sliceContainers.GetUpperBound(0)]
+                };
 
                 if (nextContainer.GetCurrentContainerState().GetType() == typeof(EmptySliceContainerState))
                 {

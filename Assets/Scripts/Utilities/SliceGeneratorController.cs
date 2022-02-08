@@ -9,23 +9,21 @@ namespace SemihCelek.Merge.Utilities
         [SerializeField]
         private GameObject _slicePrefab;
         
-        public static event SliceContainerActions OnCheckMerge;
 
 
         private void GenerateRandomSlice()
         {
-            var slice = Instantiate(_slicePrefab, transform.position, transform.rotation);
-            OnCheckMerge?.Invoke();
+            var slice = Instantiate(_slicePrefab);
         }
 
         private void Awake()
         {
-            EmptySliceContainerState.OnGenerateSlice += GenerateRandomSlice;
+            FullSliceContainerState.OnGenerateSlice += GenerateRandomSlice;
         }
 
         private void OnDestroy()
         {
-            EmptySliceContainerState.OnGenerateSlice -= GenerateRandomSlice;
+            FullSliceContainerState.OnGenerateSlice -= GenerateRandomSlice;
         }
     }
 

@@ -8,5 +8,6 @@ namespace SemihCelek.Merge.SliceContainer
 
 
         void MergeLeft(SliceContainer nextContainer);
+        void HandleUpdate();
     }
 }
